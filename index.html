@@ -14,6 +14,8 @@
 
         body {
             font-family: Arial, sans-serif;
+            background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/fs/e421ce117537023.6077922720ba8.jpg');
+            background-size: cover;
             background-color: #121212;
             color: #ffffff;
             display: flex;
@@ -30,9 +32,10 @@
             grid-gap: 20px;
             width: 97%;
             height: 95%;
-            background-color: #1e1e1e;
+            background-color: #010915;
             padding: 20px;
             border-radius: 10px;
+            opacity: 0.95;
         }
 
         /* Left Side Section */
@@ -69,10 +72,12 @@
         /* Chart and Stat item */
         .chart,
         .stat-item {
-            background-color: #2e2e2e;
+            background-color: #04192B;
             padding: 20px;
+            padding-top: 10px;
             border-radius: 10px;
             margin-bottom: 10px;
+            text-align: center;
         }
 
         h3 {
@@ -113,6 +118,49 @@
             padding-top: 60px;
             border: 0;
         }
+
+        h3 {
+            font-size: 0.9vw;
+        }
+
+        .custom-header {
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            background: linear-gradient(to bottom, #0e3a53, #0a2a43);
+            /* Gradient background */
+            padding: 5px 20px;
+            border-radius: 15px;
+            /* Softly rounded corners */
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+            /* Soft outer glow */
+            display: inline-block;
+            position: relative;
+            letter-spacing: 1px;
+            /* Slight letter spacing */
+        }
+
+        .custom-header::before,
+        .custom-header::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 10px;
+            height: 2px;
+            background-color: #00e0ff;
+            /* Bracket color */
+            transform: translateY(-50%);
+        }
+
+        .custom-header::before {
+            left: -20px;
+            /* Positioning the left bracket */
+        }
+
+        .custom-header::after {
+            right: -20px;
+            /* Positioning the right bracket */
+        }
     </style>
 </head>
 
@@ -121,15 +169,15 @@
         <!-- Left Side Section -->
         <div class="left-section">
             <div class="chart">
-                <h3>Energy Prod. Wind Turbines</h3>
+                <h3 class="custom-header">Hourly Consumption Trend by House</h3>
                 <canvas id="windTurbinesChart"></canvas>
             </div>
             <div class="chart">
-                <h3>Energy Prod. Solar Panels</h3>
+                <h3 class="custom-header">Active Power Hourly Trend</h3>
                 <canvas id="solarPanelsChart"></canvas>
             </div>
             <div class="chart">
-                <h3>Power Consumption</h3>
+                <h3 class="custom-header">Power Consumption by House</h3>
                 <canvas id="powerConsumptionChart"></canvas>
             </div>
 
@@ -147,15 +195,15 @@
         <!-- Right Side Section -->
         <div class="right-section">
             <div class="stat-item">
-                <h3>Buildings PV</h3>
+                <h3 class="custom-header">Power Consumption by Area</h3>
                 <canvas id="buildingsPvChart"></canvas>
             </div>
             <div class="stat-item">
-                <h3>Charging Station</h3>
+                <h3 class="custom-header">Hourly Consumption Trend by Area</h3>
                 <canvas id="chargingStationChart"></canvas>
             </div>
             <div class="stat-item">
-                <h3>Energy Disruptions</h3>
+                <h3 class="custom-header">Weather</h3>
                 <canvas id="energyDisruptionsChart"></canvas>
             </div>
         </div>
@@ -169,7 +217,7 @@
             data: {
                 labels: ['6AM', '8AM', '10AM', '12PM', '2PM'],
                 datasets: [{
-                    label: 'Energy Prod. Wind Turbines',
+                    label: 'Hourly Power Consumption',
                     data: [10000, 15000, 18000, 22000, 25000],
                     borderColor: '#ff4757',
                     borderWidth: 2,
