@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            /* Three columns */
+            grid-template-rows: auto;
+            grid-gap: 20px;
+            width: 97%;
+            height: 95%;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Left Side Section */
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            grid-column: 1 / 2;
+        }
+
+        /* Center Section (Map) */
+        .map-section {
+            grid-column: 2 / 3;
+            position: relative;
+        }
+
+        .map-image {
+            width: 90%;
+            height: 90%;
+            margin-left: 7%;
+            margin-top: 7%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Right Side Section */
+        .right-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            grid-column: 3 / 4;
+        }
+
+        /* Chart and Stat item */
+        .chart,
+        .stat-item {
+            background-color: #2e2e2e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        canvas {
+            width: 100%;
+            height: 210px;
+        }
+
+        /* Utility */
+        .map-section::before {
+            content: "Smart City Energy Monitoring Dasboard";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .map-section {
+            position: relative;
+            text-align: center;
+        }
+
+        .map-image {
+            cursor: pointer;
+        }
+
+        .map-frame {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding-top: 60px;
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Left Side Section -->
+        <div class="left-section">
+            <div class="chart">
+                <h3>Energy Prod. Wind Turbines</h3>
+                <canvas id="windTurbinesChart"></canvas>
+            </div>
+            <div class="chart">
+                <h3>Energy Prod. Solar Panels</h3>
+                <canvas id="solarPanelsChart"></canvas>
+            </div>
+            <div class="chart">
+                <h3>Power Consumption</h3>
+                <canvas id="powerConsumptionChart"></canvas>
+            </div>
+
+        </div>
+
+        <!-- Center Section (Image) -->
+        <div class="map-section">
+            <img src="image.png" alt="Energy Map" class="map-image" id="mapImage">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16469.758630274315!2d73.06422011876052!3d33.73102651790476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbf7769d89d8d%3A0x5d6d89877331b187!2sF-6%2C%20Islamabad%2C%20Islamabad%20Capital%20Territory%2C%20Pakistan!5e1!3m2!1sen!2s!4v1727164904805!5m2!1sen!2s"
+                class="map-frame" id="mapFrame" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <!-- Right Side Section -->
+        <div class="right-section">
+            <div class="stat-item">
+                <h3>Buildings PV</h3>
+                <canvas id="buildingsPvChart"></canvas>
+            </div>
+            <div class="stat-item">
+                <h3>Charging Station</h3>
+                <canvas id="chargingStationChart"></canvas>
+            </div>
+            <div class="stat-item">
+                <h3>Energy Disruptions</h3>
+                <canvas id="energyDisruptionsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('windTurbinesChart').getContext('2d');
+        const windTurbinesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['6AM', '8AM', '10AM', '12PM', '2PM'],
+                datasets: [{
+                    label: 'Energy Prod. Wind Turbines',
+                    data: [10000, 15000, 18000, 22000, 25000],
+                    borderColor: '#ff4757',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('mapImage').addEventListener('click', function () {
+            document.getElementById('mapImage').style.display = 'none'; // Hide the image
+            document.getElementById('mapFrame').style.display = 'block'; // Show the map
+        });
+    </script>
+</body>
+
+</html>
