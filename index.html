@@ -169,15 +169,15 @@
         <!-- Left Side Section -->
         <div class="left-section">
             <div class="chart">
-                <h3 class="custom-header">Hourly Consumption Trend by House</h3>
+                <h3 class="custom-header">Hourly Consumption by Area</h3>
                 <canvas id="windTurbinesChart"></canvas>
             </div>
             <div class="chart">
-                <h3 class="custom-header">Active Power Hourly Trend</h3>
+                <h3 class="custom-header">Active Power (Solar vs Wapda)</h3>
                 <canvas id="solarPanelsChart"></canvas>
             </div>
             <div class="chart">
-                <h3 class="custom-header">Power Consumption by House</h3>
+                <h3 class="custom-header">Total Consumption by Area</h3>
                 <canvas id="powerConsumptionChart"></canvas>
             </div>
 
@@ -195,16 +195,16 @@
         <!-- Right Side Section -->
         <div class="right-section">
             <div class="stat-item">
-                <h3 class="custom-header">Power Consumption by Area</h3>
+                <h3 class="custom-header">WAPDA Consumption</h3>
                 <canvas id="buildingsPvChart"></canvas>
             </div>
             <div class="stat-item">
-                <h3 class="custom-header">Hourly Consumption Trend by Area</h3>
+                <h3 class="custom-header">SOLAR's Generation</h3>
                 <canvas id="chargingStationChart"></canvas>
             </div>
-            <div class="stat-item">
+            <div class="stat-item" style="padding-left: 0; padding-right: 0; padding-bottom: 0;">
                 <h3 class="custom-header">Weather</h3>
-                <canvas id="energyDisruptionsChart"></canvas>
+                <iframe width="100%" height="80%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=33.387&lon=72.85&detailLat=33.439&detailLon=72.863&detail=true" frameborder="0"></iframe>
             </div>
         </div>
     </div>
