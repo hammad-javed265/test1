@@ -161,6 +161,11 @@
             right: -20px;
             /* Positioning the right bracket */
         }
+        .right-div{
+            height: 10vh;
+            padding-top: 2vw;
+            font-size: 1.6vw;
+        }
     </style>
 </head>
 
@@ -195,16 +200,16 @@
         <!-- Right Side Section -->
         <div class="right-section">
             <div class="stat-item">
-                <h3 class="custom-header">WAPDA Consumption</h3>
-                <canvas id="buildingsPvChart"></canvas>
+                <h3 class="custom-header">Today WAPDA Consumption</h3>
+                <div class="right-div" id="buildingsPvChart">45890 kWh</div>
             </div>
             <div class="stat-item">
-                <h3 class="custom-header">SOLAR's Generation</h3>
-                <canvas id="chargingStationChart"></canvas>
+                <h3 class="custom-header">Today SOLAR's Generation</h3>
+                <div  class="right-div" id="chargingStationChart">32540 kWh</div>
             </div>
-            <div class="stat-item" style="padding-left: 0; padding-right: 0; padding-bottom: 0;">
+            <div class="stat-item" style="padding-left: 0; padding-right: 0; padding-bottom: 0; height: 50vh;">
                 <h3 class="custom-header">Weather</h3>
-                <iframe width="100%" height="80%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=33.387&lon=72.85&detailLat=33.439&detailLon=72.863&detail=true" frameborder="0"></iframe>
+                <iframe width="100%" height="90%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=33.387&lon=72.85&detailLat=33.439&detailLon=72.863&detail=true" frameborder="0"></iframe>
             </div>
         </div>
     </div>
