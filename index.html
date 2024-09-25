@@ -88,7 +88,6 @@
 
         canvas {
             width: 100%;
-            height: 20vh;
         }
 
         /* Utility */
@@ -161,10 +160,18 @@
             right: -20px;
             /* Positioning the right bracket */
         }
-        .right-div{
+
+        @font-face {
+            font-family: 'digital-7';
+            src: url('fonts/Digital Numbers 400.ttf');
+        }
+
+        .right-div {
             height: 10vh;
             padding-top: 2vw;
             font-size: 1.6vw;
+            font-family: 'digital-7', sans-serif;
+            color: #4FFF00;
         }
     </style>
 </head>
@@ -175,15 +182,15 @@
         <div class="left-section">
             <div class="chart">
                 <h3 class="custom-header">Hourly Consumption by Area</h3>
-                <canvas id="windTurbinesChart"></canvas>
+                <canvas id="windTurbinesChart" style="height: 27vh "></canvas>
             </div>
             <div class="chart">
                 <h3 class="custom-header">Active Power (Solar vs Wapda)</h3>
-                <canvas id="solarPanelsChart"></canvas>
+                <canvas id="solarPanelsChart" style="height: 27vh "></canvas>
             </div>
             <div class="chart">
-                <h3 class="custom-header">Total Consumption by Area</h3>
-                <canvas id="powerConsumptionChart"></canvas>
+                <h3 class="custom-header">Total Load Consumption by Area</h3>
+                <div class="right-div" id="chargingStationChart">78430 kWh</div>
             </div>
 
         </div>
@@ -191,9 +198,7 @@
         <!-- Center Section (Image) -->
         <div class="map-section">
             <img src="pak.webp" alt="Energy Map" class="map-image" id="mapImage">
-            <iframe
-                src="map.html"
-                class="map-frame" id="mapFrame" allowfullscreen="" loading="lazy"
+            <iframe src="map.html" class="map-frame" id="mapFrame" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
@@ -205,11 +210,13 @@
             </div>
             <div class="stat-item">
                 <h3 class="custom-header">Today SOLAR's Generation</h3>
-                <div  class="right-div" id="chargingStationChart">32540 kWh</div>
+                <div class="right-div" id="chargingStationChart">32540 kWh</div>
             </div>
             <div class="stat-item" style="padding-left: 0; padding-right: 0; padding-bottom: 0; height: 50vh;">
                 <h3 class="custom-header">Weather</h3>
-                <iframe width="100%" height="90%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=33.387&lon=72.85&detailLat=33.439&detailLon=72.863&detail=true" frameborder="0"></iframe>
+                <iframe width="100%" height="90%"
+                    src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=33.387&lon=72.85&detailLat=33.439&detailLon=72.863&detail=true"
+                    frameborder="0"></iframe>
             </div>
         </div>
     </div>
@@ -238,6 +245,39 @@
             }
         });
     </script>
+    <script>
+        const ctx1 = document.getElementById('solarPanelsChart').getContext('2d');
+        const solarPanelsChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['6AM', '8AM', '10AM', '12PM', '2PM'],
+                datasets: [
+                    {
+                        label: 'Hourly Solar Generation',
+                        data: [60, 120, 500, 600, 650],
+                        borderColor: '#ffa502',  // Yellow color for Solar Generation
+                        borderWidth: 2,
+                        fill: false
+                    },
+                    {
+                        label: 'Hourly Wapda Consumption',
+                        data: [400, 300, 50, 10, 5],
+                        borderColor: '#1e90ff',  // Blue color for Wapda Consumption
+                        borderWidth: 2,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    
     <script>
         document.getElementById('mapImage').addEventListener('click', function () {
             document.getElementById('mapImage').style.display = 'none'; // Hide the image
